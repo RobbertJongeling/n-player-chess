@@ -1,2 +1,4 @@
 n-player chess.
-//TODO a lot!
+//TODO a lot! - see issues
+
+Libraries: JOGL, GLUEGEN-RT
