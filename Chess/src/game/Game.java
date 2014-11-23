@@ -38,7 +38,7 @@ public class Game {
 	}
 
 	public void selectField(int p, int i, int j) {
-		System.out.println("selected board: " + p + ", field: (" + i + ", " + j + ")");
+		//System.out.println("selected board: " + p + ", field: (" + i + ", " + j + ")");
 		boolean same = false;
 		boolean onproj = false;
 		if (selected != null && selected.getPlayerId() == p && selected.getCoordinate().getX() == i && selected.getCoordinate().getY() == j) {
@@ -49,7 +49,7 @@ public class Game {
 			for (PlayerField proj : projected) {
 				Coordinate c = proj.getCoordinate();
 				if (proj.getPlayerId() == p && c.getX() == i && c.getY() == j) {
-					System.out.println("move to: (" + i + ", " + j + ")");
+					//System.out.println("move to: (" + i + ", " + j + ")");
 					board.movePiece(selected,p,i,j);
 					onproj = true;
 				}
@@ -90,7 +90,7 @@ public class Game {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		Game game = new Game(5);//TODO dynamic in menu
+		Game game = new Game(3);//TODO dynamic in menu
 		game.start();
 	}
 }

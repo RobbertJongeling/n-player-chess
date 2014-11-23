@@ -48,7 +48,7 @@ public class Bishop extends Piece {
 						if (x - i >= 4) {
 							fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x - i), 7 - (y + i)));
 						} else {
-							if(x+y >= 7) {
+							if (x + y >= 7) {
 								fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x - i), 7 - (y + i)));
 							} else {
 								fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x - i), 7 - (y + i)));
@@ -64,17 +64,13 @@ public class Bishop extends Piece {
 						fields.add(pb.getPlayerFieldAt(x + i, y + i));
 					} else {
 						if (x + i >= 4) {
-							if(7-x + y >= 8) {
+							if (7 - x + y >= 8) {
 								fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
 							} else {
 								fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
 							}
 						} else {
-							if(x+y >= 7) {
-								fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
-							} else {
-								fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
-							}
+							fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
 						}
 					}
 					i++;

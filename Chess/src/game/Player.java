@@ -10,11 +10,11 @@ import java.awt.Color;
 public class Player {
     
     private int id;
-	private Color colour;
+	private Color color;
     
-    public Player(int id, Color colour) {
+    public Player(int id, Color color) {
         this.id = id;
-		this.colour = colour;
+		this.color = color;
     }
     
     public int getId() {
@@ -22,6 +22,6 @@ public class Player {
     }
 	
 	public Color getColor() {
-		return colour;
+		return color;
 	}
 }
