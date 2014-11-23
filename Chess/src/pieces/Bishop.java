@@ -41,18 +41,18 @@ public class Bishop extends Piece {
 		int i = 1;
 		switch (direction) {
 			case 1:
-				/*while (x - i >= 0 && y + i <= 7) {
-				fields.add(pb.getPlayerFieldAt(x - i, y + i));
-				i++;
-				}*/
 				while (x - i >= 0 && y + i <= 7) {
-					if ((int) (y + i) / 4 == 0) {
+					if (y + i < 4) {
 						fields.add(pb.getPlayerFieldAt(x - i, y + i));
 					} else {
-						if ((int) (x / 4) == 1) {
+						if (x - i >= 4) {
 							fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x - i), 7 - (y + i)));
 						} else {
-							fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x - i), 7 - (y + i)));
+							if(x+y >= 7) {
+								fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x - i), 7 - (y + i)));
+							} else {
+								fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x - i), 7 - (y + i)));
+							}
 						}
 					}
 					i++;
@@ -60,7 +60,23 @@ public class Bishop extends Piece {
 				break;
 			case 3:
 				while (x + i <= 7 && y + i <= 7) {
-					fields.add(pb.getPlayerFieldAt(x + i, y + i));
+					if (y + i < 4) {
+						fields.add(pb.getPlayerFieldAt(x + i, y + i));
+					} else {
+						if (x + i >= 4) {
+							if(7-x + y >= 8) {
+								fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
+							} else {
+								fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
+							}
+						} else {
+							if(x+y >= 7) {
+								fields.add(pb.getRightNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
+							} else {
+								fields.add(pb.getLeftNeighbour().getPlayerFieldAt(7 - (x + i), 7 - (y + i)));
+							}
+						}
+					}
 					i++;
 				}
 				break;
