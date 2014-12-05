@@ -5,6 +5,7 @@ import board.PlayerField;
 import board.PlayerBoard;
 import game.Player;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import view.Point;
 
@@ -29,7 +30,15 @@ public class Pawn extends Piece {
 			List<PlayerField> oneForward = getFieldListToAdd(pb, x, y + 1);
 			listOfFields.add(oneForward);			
 			listOfFields.add(getHitFieldListToAdd(pb, x+1, y + 1));
-			listOfFields.add(getHitFieldListToAdd(pb, x-1, y + 1));
+			if(x==4 && y==3) {
+				PlayerField toMove = pb.getRightNeighbour().getPlayerFieldAt(4, 3);
+				Piece toHit = toMove.getPiece();
+				if(toHit!=null && toHit.player.getId() != player.getId()) {
+					listOfFields.add(Arrays.asList(toMove));
+				} else {}
+			} else {
+				listOfFields.add(getHitFieldListToAdd(pb, x-1, y + 1));
+			}
 			if(y==1 && pb.getPlayer().getId() == this.player.getId() && oneForward.size() > 0) {				
 				listOfFields.add(getFieldListToAdd(pb, x, y + 2));
 			}

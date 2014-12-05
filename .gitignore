@@ -5,3 +5,4 @@ nbproject/
 build.xml
 *.log
 manifest.mf
+*.form
