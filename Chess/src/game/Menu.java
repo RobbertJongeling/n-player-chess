@@ -37,7 +37,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        spnrNrPlayers.setModel(new javax.swing.SpinnerNumberModel(3, 3, 2147483647, 1));
+        spnrNrPlayers.setModel(new javax.swing.SpinnerNumberModel(3, 2, 2147483647, 1));
 
         jLabel1.setText("Number of players:");
 

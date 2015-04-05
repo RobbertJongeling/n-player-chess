@@ -20,11 +20,15 @@ public class Game {
 	private ViewMaker view;
 	private PlayerField selected;
 	private List<PlayerField> projected;
-	//for testing //TODO dynamic in menu
+	private List<Move> moves;
+	//TODO dynamic in menu
 	private Color colors[] = new Color[]{Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW, Color.CYAN};
-
+	int turn;
+	
 	public Game(int n) {
 		this.n = n;
+		this.turn = 0;
+		moves = new ArrayList<Move>();
 	}
 
 	public void start() {
@@ -50,7 +54,13 @@ public class Game {
 				Coordinate c = proj.getCoordinate();
 				if (proj.getPlayerId() == p && c.getX() == i && c.getY() == j) {
 					//System.out.println("move to: (" + i + ", " + j + ")");
-					board.movePiece(selected,p,i,j);
+					if(selected.getPiece().getPlayer().getId() == turn) {
+						Move move = new Move(selected, board.getPlayerFieldAt(p, i, j));
+						board.performMove(move);
+						turn = (turn + 1) % players.length;			
+						moves.add(move);
+					}
+					
 					onproj = true;
 				}
 			}
@@ -66,7 +76,7 @@ public class Game {
 			projected = null;
 		}
 
-		if (!same && !onproj) {			
+		if (!same && !onproj) {
 			selected = board.getPlayerboards()[p].getPlayerFieldAt(i, j);
 			projected = new ArrayList<PlayerField>();
 			projected.addAll(board.getLegalFields(selected));

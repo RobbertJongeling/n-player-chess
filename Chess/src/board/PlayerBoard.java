@@ -23,16 +23,16 @@ public class PlayerBoard {
 			}
 		}
 		for(int i = 0; i<8; i++) {
-			playerfields[i][1].addPiece(new Pawn(player));
+			playerfields[i][1].setPiece(new Pawn(player));
 		}
-		playerfields[0][0].addPiece(new Rook(player));
-		playerfields[7][0].addPiece(new Rook(player));
-		playerfields[1][0].addPiece(new Knight(player));
-		playerfields[6][0].addPiece(new Knight(player));
-		playerfields[2][0].addPiece(new Bishop(player));
-		playerfields[5][0].addPiece(new Bishop(player));
-		playerfields[3][0].addPiece(new Queen(player));
-		playerfields[4][0].addPiece(new King(player));
+		playerfields[0][0].setPiece(new Rook(player));
+		playerfields[7][0].setPiece(new Rook(player));
+		playerfields[1][0].setPiece(new Knight(player));
+		playerfields[6][0].setPiece(new Knight(player));
+		playerfields[2][0].setPiece(new Bishop(player));
+		playerfields[5][0].setPiece(new Bishop(player));
+		playerfields[3][0].setPiece(new Queen(player));
+		playerfields[4][0].setPiece(new King(player));
 		
 	}
 

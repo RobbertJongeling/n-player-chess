@@ -40,7 +40,7 @@ public class PlayerField {
 		this.player = player;
     }
     
-	public void addPiece(Piece piece) {
+	public void setPiece(Piece piece) {
 		this.piece = piece;
 	}
 	
