@@ -31,4 +31,21 @@ public abstract class Piece {
     public abstract List<List<PlayerField>> getLegalFieldsInOrder(PlayerBoard pb, PlayerField from);
 
 	public abstract Point[] getPolygon();
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Piece)) {
+			return false;
+		} else {
+			Piece p = (Piece) obj;
+			return (p.player.equals(this.player));
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 37 * hash + (this.player != null ? this.player.hashCode() : 0);
+		return hash;
+	}
 }

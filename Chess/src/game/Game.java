@@ -17,18 +17,16 @@ public class Game {
 	private Board board;
 	private Player[] players;
 	private int n;
-	private ViewMaker view;
+	private ViewMaker viewMaker;
 	private PlayerField selected;
 	private List<PlayerField> projected;
-	private List<Move> moves;
 	//TODO dynamic in menu
 	private Color colors[] = new Color[]{Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW, Color.CYAN};
 	int turn;
-	
+
 	public Game(int n) {
 		this.n = n;
 		this.turn = 0;
-		moves = new ArrayList<Move>();
 	}
 
 	public void start() {
@@ -38,29 +36,41 @@ public class Game {
 		}
 		board = new Board(players);
 
-		view = new ViewMaker(this);
+		viewMaker = new ViewMaker(this);
+		viewMaker.start();
+		log("Player 0 to move");//TODO 
 	}
 
 	public void selectField(int p, int i, int j) {
-		//System.out.println("selected board: " + p + ", field: (" + i + ", " + j + ")");
 		boolean same = false;
 		boolean onproj = false;
-		if (selected != null && selected.getPlayerId() == p && selected.getCoordinate().getX() == i && selected.getCoordinate().getY() == j) {
+
+		PlayerField clicked = board.getPlayerFieldAt(p, i, j);
+
+		//select of selected
+		if (selected != null && selected.equals(clicked)) {
 			same = true;
 		}
 
+		//select of projected, other than same
 		if (projected != null) {
 			for (PlayerField proj : projected) {
 				Coordinate c = proj.getCoordinate();
-				if (proj.getPlayerId() == p && c.getX() == i && c.getY() == j) {
-					//System.out.println("move to: (" + i + ", " + j + ")");
-					if(selected.getPiece().getPlayer().getId() == turn) {
-						Move move = new Move(selected, board.getPlayerFieldAt(p, i, j));
-						board.performMove(move);
-						turn = (turn + 1) % players.length;			
-						moves.add(move);
+				if (proj.equals(clicked)) {
+					if (selected.getPiece().getPlayer().getId() == turn) {
+						Move move = new Move(selected, clicked);
+						if (isLegal(move)) {
+							log("Player " + turn + " move: " + move.toString());
+							board.performMove(move);
+							if (endsGame()) {
+								//TODO implement
+							} else {
+								turn = (turn + 1) % players.length;
+								log("Player " + turn + " to move");
+							}
+						}
 					}
-					
+
 					onproj = true;
 				}
 			}
@@ -76,10 +86,17 @@ public class Game {
 			projected = null;
 		}
 
+		//select
 		if (!same && !onproj) {
-			selected = board.getPlayerboards()[p].getPlayerFieldAt(i, j);
+			//selected = board.getPlayerboards()[p].getPlayerFieldAt(i, j);
+			selected = clicked;
 			projected = new ArrayList<PlayerField>();
 			projected.addAll(board.getLegalFields(selected));
+			//TODO: 
+			/*List<Move> legal = board.getLegalMoves(selected);
+			for (Move m : legal) {
+			projected.add(m.getTo());
+			}*/
 
 			selected.select();
 			for (PlayerField proj : projected) {
@@ -94,5 +111,21 @@ public class Game {
 
 	public Board getBoard() {
 		return board;
+	}
+
+	public void log(String text) {
+		viewMaker.log(text);
+	}
+
+	private boolean isLegal(Move move) {
+		//TODO implement
+		//not legal if check yourself
+		return true;
+	}
+
+	private boolean endsGame() {
+		//TODO implement
+		//engds game depending on game mdoe
+		return false;
 	}
 }

@@ -329,7 +329,7 @@ public class View implements GLEventListener, MouseListener {
 		double ywidth = Math.min((my - bl.getY() + my - br.getY()) / 2, (tl.getY() - my + tr.getY() - my) / 2);
 		return Math.min(xwidth, ywidth)/* / Math.sqrt(2)*/;//TODO verify
 	}
-
+	
 	@Override
 	public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
 	}

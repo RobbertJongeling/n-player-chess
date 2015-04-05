@@ -23,4 +23,13 @@ public class Move {
 	public PlayerField getTo() {
 		return to;
 	}
+	
+	@Override
+	public String toString() {
+		String connector = "->";
+		if(to.getPiece() != null) {
+			connector = "x";
+		}
+		return from.getPiece().getLetter() + from.getPlayerId() + from.getCoordinate().toString() + connector + to.getPlayerId() + to.getCoordinate().toString();
+	}
 }
